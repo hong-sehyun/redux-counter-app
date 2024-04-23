@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 // import counter from './reducers';
 import rootReducer from './reducers';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,10 +29,12 @@ const render = () => root.render(
   // getState(): 애플리케이션의 현재 상태 트리를 반환함
   // 스토어의 reducer가 반환한 마지막 값과 같음
   <React.StrictMode>
-    <App value={store.getState()}
-    onIncrement={()=> store.dispatch({type: "INCREMENT"})}
-    onDecrement={()=> store.dispatch({type: "DECREMENT"})}
-    />
+    <Provider store={store}>      
+      <App value={store.getState()}
+      onIncrement={()=> store.dispatch({type: "INCREMENT"})}
+      onDecrement={()=> store.dispatch({type: "DECREMENT"})}
+      />
+    </Provider>
   </React.StrictMode>
 );
 
