@@ -4,14 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
-import counter from './reducers';
+// import counter from './reducers';
+import rootReducer from './reducers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 // CreateStore(): 앱의 전체 상태 트리를 보유하는 Redux 저장소를 만듦
 // 앱에는 하나의 스토어만 있어야 함
-const store = createStore(counter);
+
+// const store = createStore(counter);
+const store = createStore(rootReducer);
+
+store.dispatch({
+  type: "ADD_TODO",
+  text: "USE REDUX"
+})
+
+console.log("store.getState", store.getState());
 
 const render = () => root.render(
   // getState(): 애플리케이션의 현재 상태 트리를 반환함
