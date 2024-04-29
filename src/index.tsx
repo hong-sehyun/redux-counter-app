@@ -7,6 +7,7 @@ import { applyMiddleware, createStore } from "redux";
 // import counter from './reducers';
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,7 +19,7 @@ const loggerMiddleware = (store: any) => (next: any) => (action: any) => {
   next(action);
 };
 
-const middleware = applyMiddleware(loggerMiddleware);
+const middleware = applyMiddleware(thunk, loggerMiddleware);
 
 // CreateStore(): 앱의 전체 상태 트리를 보유하는 Redux 저장소를 만듦
 // 앱에는 하나의 스토어만 있어야 함
